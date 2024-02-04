@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+}
+
+<h2>Info</h2>
+
+@{ 
+    var result = "";
+    if (IsPost)
+    {
+        result = "This page was posted using the Submit button.";
+    }
+    else
+    {
+        result = "This was the first request for this page.";
+    }
+}
+<html><body>
+      <form method="POST" action="">
+          <input type="Submit" name="Submit" value="Submit"/>
+          <p>@result</p>
+      </form>
+</body></html>
+
+<table border="1">
+    <tr>
+        <th>Requested URL</th>
+        <th>Relative Path</th>
+        <th>Full Path</th>
+        <th>HTTP Request Type</th>
+    </tr>    
+    <tr>
+        <td>@Request.Url</td>
+        <td>@Request.FilePath</td>
+        <td>@Request.MapPath(Request.FilePath)</td>
+        <td>@Request.RequestType</td>
+    </tr>
+</table>
+

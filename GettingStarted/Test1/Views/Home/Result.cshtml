@@ -1,0 +1,80 @@
+﻿
+@{ ViewBag.Title = "Result";}
+<h2>Result</h2>
+
+@{
+    if (IsPost)
+    {
+        var name_1 = Request["name1"]; var score_1 = Request["score1"];
+        var name_2 = Request["name2"]; var score_2 = Request["score2"];
+        var name_3 = Request["name3"]; var score_3 = Request["score3"];
+        var name_4 = Request["name4"]; var score_4 = Request["score4"];
+
+        string[] names = { name_1, name_2, name_3, name_4 };
+        string[] scores = { score_1, score_2, score_3, score_4 };
+
+        <p>Number of items in 'names' array: @names.Length </p>
+        <p>Number of items in 'scores' array: @names.Length </p>
+
+        <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <td align="center">Array Index</td>
+                    <td align="center">Name</td>
+                    <td align="center">Score</td>
+                </tr>
+            </thead>
+
+             @foreach (var item in names.Select((value, index) => new { index, value}))
+                {
+                    <tr>
+                        <td align="center">@item.index</td>
+                        <td align="center">@item.value</td>
+                        <td align="center">@scores[item.index]</td>
+                    </tr>
+                }
+        </table>
+    }
+
+}
+
+<form action="" method="post">
+    <table>
+        <thead>
+            <tr>
+                <td align="center">S.No</td>
+                <td align="center">Name</td>
+                <td align="center">Score</td>
+            </tr>
+        </thead>
+
+        <tr>
+            <td align="center"><label>1</label></td>
+            <td><input type="text" name="name1" /></td>
+            <td><input type="text" name="score1" /></td>
+        </tr>
+        <tr>
+            <td align="center"><label>2</label></td>
+            <td><input type="text" name="name2" /></td>
+            <td><input type="text" name="score2" /></td>
+        </tr>
+        <tr>
+            <td align="center"><label>3</label></td>
+            <td><input type="text" name="name3" /></td>
+            <td><input type="text" name="score3" /></td>
+        </tr>
+        <tr>
+            <td align="center"><label>4</label></td>
+            <td><input type="text" name="name4" /></td>
+            <td><input type="text" name="score4" /></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <input type="submit" value="Submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+

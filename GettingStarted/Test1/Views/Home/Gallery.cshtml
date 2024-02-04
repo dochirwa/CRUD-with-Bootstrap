@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Gallery";
+}
+
+<h2>Gallery</h2>
+
+@{ var myMessage = "Hello World!"; } <!-- Single statement block-->
+
+<p> The value of myMessage is: @myMessage </p> <!-- Inline expressions-->
+
+@{
+    var greeting = "Welcome to our site!";
+    var weekDay = DateTime.Now.DayOfWeek;
+    var greetingMessage = greeting + " Today is: " + weekDay;
+} <!-- Multi-statement block-->
+
+<p> The greeting is: @greetingMessage </p>
+

@@ -1,0 +1,22 @@
+﻿
+@{ ViewBag.Title = "VariableDatatype"; }
+<h2> Variables and Data Types </h2>
+
+@{ 
+    var greeting = "Welcome!";
+    var theCount = 3;
+    var monthlyTotal = theCount + 5;
+    var today = DateTime.Today;
+    var myPath = this.Request.Url;
+
+    String name = "Joe";
+    int count = 5;
+    DateTime tomorrow = DateTime.Now.AddDays(1);
+
+    <p>@greeting, friends!</p>
+
+    <p>The predicted annual total is: @( monthlyTotal * 12 )</p>
+
+    <p>The URL to this page is: @myPath</p>
+}
+

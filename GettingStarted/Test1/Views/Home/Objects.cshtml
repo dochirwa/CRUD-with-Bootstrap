@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Objects";
+}
+
+<h2>Objects</h2>
+
+@{
+    var path = this.Request.FilePath;
+}
+
+<p>File Path = @path</p>
+
+@{
+    var path2 = this.Request.FilePath;
+}
+
+<p>File Path using <strong>this</strong> keyword = @path2</p>

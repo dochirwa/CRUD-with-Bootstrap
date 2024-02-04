@@ -1,0 +1,31 @@
+﻿
+@{ ViewBag.Title = "Arrays";
+
+}
+<h2>Arrays</h2>
+
+@{
+    <h3>Team Members</h3>
+    string[] teamMembers = { "Matt", "Joanne", "Robert", "Nancy" };
+
+    <p>The number of names in the teamMembers array: @teamMembers.Length</p>
+    <p>Robert is now in position: @Array.IndexOf(teamMembers, "Robert")</p>
+    <p>The array item at position 3 (zero-based) is @teamMembers[3]</p>
+
+    <p>Correct order of team members in the list</p>
+    foreach(var Item in teamMembers)
+    {
+        <p>@Item</p>
+    }
+
+    <p>Reversed order of team members in the list</p>
+    Array.Reverse(teamMembers);
+
+    foreach(var reversedItem in teamMembers)
+    {
+        <p>@reversedItem</p>
+    }
+
+    <p>Now the array item at position 3 (zero-based) is @teamMembers[3]</p>
+}
+

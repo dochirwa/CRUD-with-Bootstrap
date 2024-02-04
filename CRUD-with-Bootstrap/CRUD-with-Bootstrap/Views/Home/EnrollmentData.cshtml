@@ -1,0 +1,114 @@
+﻿@model IEnumerable<CRUD_with_Bootstrap.Models.Enrollment>
+
+@{
+    ViewBag.Title = "EnrollmentData";
+}
+
+<div><p>@ViewBag.msg</p></div>
+
+<h2>Enrollment Data</h2>
+
+<p>
+    <button class="btn btn-primary" id="create_btn" onclick="create()">Add New Enrollment Data</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+     {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course)
+            </td>
+            <td>
+                <button class="btn btn-info" id="create_btn" onclick="edit(@item.Id)">Edit</button>
+                <button class="btn btn-danger" id="create_btn" onclick="del(@item.Id)">Delete</button>
+            </td>
+        </tr>
+     }
+
+</table>
+
+
+<div id="ActionModal" class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <a href="https://localhost:44344/Home/EnrollmentData" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body" id="modalbody"></div>
+            @*<div class="modal-footer">
+        </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Data</h4>
+                <a href="https://localhost:44344/Home/EnrollmentData" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body"> Are you sure you want to delete this data?</div>
+            <div class="modal-footer">
+                <input type='button' class='btn btn-danger' id='delYes' value='Delete'/>
+                <a href="https://localhost:44344/Home/EnrollmentData" value="Cancel" class="btn btn-primary">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var create = function ()
+    {
+        var createURL = "/Home/Create";
+        $("#modalTitle").html("Add new enrollment data");
+        $("#modalbody").load(createURL, function()
+        {
+            $("#ActionModal").modal("show");
+        });
+    }
+
+    var edit = function (id)
+    {
+        var editURL = "/Home/EditUpdate?id="+id;
+        $("#modalTitle").html("Edit and Update Data");
+        $("#modalbody").load(editURL, function ()
+        {
+            $("#ActionModal").modal("show");
+        });
+    }
+
+    var del = function (id)
+    {
+        $("#DeleteModal").modal("show");
+        $("#delYes").on("click", function () {
+            var deleteURL = "/Home/delete?id=" + id;
+            $.ajax
+            ({
+                type: "post",
+                url: deleteURL,
+                success: function ()
+                {
+                    $("#DeleteModal").modal("hide");
+                    window.location.reload();
+                }
+            });
+        });
+    }    
+</script>

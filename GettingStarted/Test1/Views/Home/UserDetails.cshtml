@@ -1,0 +1,62 @@
+﻿
+@{ ViewBag.Title = "UserDetails";
+
+}
+<h4>UserDetails</h4>
+
+@{
+    string[] First_Name = { "vvvv", "iiii", "bbbb", "gggg", "yyyy", "oooo", "rrrr" };
+    string[] Last_Name = { "Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red" };
+    string[] Phone_Number = { "612-352-0598", "612-342-1598", "613-352-0998", "612-388-0598", "612-344-0598", "612-352-0566", "612-352-0522"};
+    string[] Email = { "Violet@gmain.com", "Indigo@gmain.com", "Blue@gmain.com", "Green@gmain.com", "Yellow@gmain.com", "Orange@gmain.com", "Red@gmain.com" };
+
+    var ID = 0;
+}
+
+<div class="container">
+    <div class="row data_table">
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var myItem in First_Name.Select((value, i) => new {i, value}))
+            {
+                ID += 1;
+
+                <tbody>
+                    <tr>
+                        <td>@ID</td>
+                        <td>@myItem.value  </td>
+                        <td>@Last_Name[@myItem.i]</td>
+                        <td>@Phone_Number[@myItem.i]</td>
+                        <td>@Email[@myItem.i]</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary btn-xs">Edit</button>&nbsp;
+                                <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+</div>
+<style type="text/css">
+    .data-table
+    {
+        width: 100%;
+        overflow-y: auto;
+        _overflow: auto;
+        margin: 0 0 1em;
+    }
+</style>
+
